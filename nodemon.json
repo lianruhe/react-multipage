@@ -1,0 +1,16 @@
+{
+  "verbose": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "ignore": [
+    "cli",
+    "coverage",
+    "dist",
+    "mock",
+    "node_modules",
+    "src",
+    "test/unit",
+    "package.json"
+  ]
+}

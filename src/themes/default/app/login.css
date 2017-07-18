@@ -1,0 +1,23 @@
+.ui-login {
+  & .login-title {
+    line-height: 50px;
+    font-size: 16px;
+    color: var(--title_color);
+    text-align: center;
+    margin-bottom: 24px;
+    background-color: var(--title_bgc);
+  }
+
+  & .login-form {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  & .login-form-forgot {
+    float: right;
+  }
+
+  & .login-form-button {
+    width: 100%;
+  }
+}
