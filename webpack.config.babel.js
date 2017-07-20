@@ -2,7 +2,6 @@ import fs from 'fs'
 import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-// import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 import MultipageWebpackPlugin from 'multipage-webpack-plugin'
 import _debug from 'debug'
@@ -26,19 +25,13 @@ if (__DEV__) {
     'webpack/hot/only-dev-server'
   )
 }
+// 忽略的模块
+const entryIgnore = ['README.md']
 modules.map(module => {
-  modulesEntry[module] = appEntry.concat(paths.src('modules', module, 'index.jsx'))
+  if (entryIgnore.indexOf(module) === -1) {
+    modulesEntry[module] = appEntry.concat(paths.src('modules', module, 'index.jsx'))
+  }
 })
-console.log(modulesEntry, 1111)
-
-// const appEntry = ['whatwg-fetch', paths.src('index.jsx')]
-// if (__DEV__) {
-//   appEntry.unshift(
-//     'react-hot-loader/patch',
-//     // `webpack-dev-server/client?http://localhost:${config.server_port}`,
-//     'webpack/hot/only-dev-server'
-//   )
-// }
 
 const postcssLoaders = [
   'style-loader',
@@ -194,20 +187,6 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin(config.globals),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: `${__PROD__ ? '../' : ''}index.html`,
-    //   template: paths.src('index.ejs'),
-    //   title: `${config.pkg.name} - ${config.pkg.description}`,
-    //   hash: false,
-    //   inject: true,
-    //   minify: {
-    //     collapseWhitespace: config.compiler_html_minify,
-    //     minifyJS: config.compiler_html_minify
-    //   }
-    // }),
     new CopyWebpackPlugin([{
       from: paths.src('static'),
       to: paths.dist('static')
@@ -231,14 +210,20 @@ const webpackConfig = {
         windows: false
       }
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['vendor']
-    // }),
     new MultipageWebpackPlugin({
       vendorChunkName: 'vendor',
-      templateFilename: '[name].[hash].html',
+      templateFilename: '[name].html',
       templatePath: paths.dist(),
-      htmlTemplatePath: paths.src('index.ejs')
+      htmlTemplatePath: paths.src('index.html'),
+      htmlWebpackPluginOptions: {
+        title: `${config.pkg.name} - ${config.pkg.description}`,
+        hash: false,
+        inject: true,
+        minify: {
+          collapseWhitespace: config.compiler_html_minify,
+          minifyJS: config.compiler_html_minify
+        }
+      }
     })
   ]
 }

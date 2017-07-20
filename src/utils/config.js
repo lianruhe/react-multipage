@@ -10,7 +10,7 @@ const PRODUCTION = 4
 // mock 数据地址
 const MOCK_HOST = 'localhost:3000'
 // mock 数据地址
-const DEV_HOST = '127.0.0.1:3000'
+const DEV_HOST = '127.0.0.1:3001'
 // 生产数据地址
 const PRO_HOST = '127.0.0:9001'
 
