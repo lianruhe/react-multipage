@@ -4,6 +4,8 @@ import autobind from 'autobind-decorator'
 import Base from 'components/base'
 import Grid from 'components/grid'
 
+import { Input } from 'antd'
+
 // 引入调用接口需要的模块
 import request from 'utils/x-request'
 import { APP_RES } from 'utils/config'
@@ -24,13 +26,6 @@ export default class Demo extends Base {
    */
   state = {
     data: {}
-  }
-
-  /**
-   * 自定义其它变量
-   */
-  vars = {
-    key: 123
   }
 
   /**
@@ -87,24 +82,46 @@ export default class Demo extends Base {
     console.log('组件收到新的参数了')
   }
 
+  columns = [{
+    title: 'ID',
+    dataIndex: 'id'
+  }, {
+    title: '名称',
+    dataIndex: 'title'
+  }, {
+    title: '内容',
+    dataIndex: 'content'
+  }]
+
+  searchItems = [{
+    label: 'ID',
+    id: 'id',
+    col: {
+      labelCol: { span: 4 },
+      wrapperCol: { span: 20 }
+    },
+    element: <Input placeholder="请输入Id" />
+  }, {
+    label: '名称',
+    id: 'title',
+    col: {
+      labelCol: { span: 5 },
+      wrapperCol: { span: 19 }
+    },
+    element: <Input placeholder="请输入名称" />
+  }]
+
   render () {
-    const { data } = this.state
     // const data = this.state.data
+    const { data } = this.state
+    // items 默认值为 []
     const { items = [] } = data
-    const columns = [{
-      title: 'ID',
-      dataIndex: 'id'
-    }, {
-      title: '名称',
-      dataIndex: 'title'
-    }, {
-      title: '内容',
-      dataIndex: 'content'
-    }]
+
     return (
       <div id="ui-demo">
+        {/* Grid 组件增加了 operations 和 search 参数，其它参数仍参考 antd 的 table 组件 */}
         <Grid
-          columns={columns}
+          columns={this.columns}
           rowKey={row => row.id}
           dataSource={items}
           operations={[{
@@ -116,7 +133,12 @@ export default class Demo extends Base {
           }, {
             title: 'func3',
             handleClick: this.handleFunc3
-          }]} />
+          }]}
+          search={{
+            items: this.searchItems,
+            formData: { id: 123 },
+            handleSubmit: this.handleFunc1
+          }} />
       </div>
     )
   }

@@ -41,4 +41,4 @@ npm run build
 
 ## License
 
-MIT
+MIT(https://github.com/lianruhe/react-multipage/blob/master/LICENSE)
