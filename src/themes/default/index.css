@@ -7,55 +7,12 @@ html, body {
 #app {
   height: 100%;
   overflow: hidden;
+  background-color: var(--main_bgc);
 
-  & #container {
-    height: 100%;
+  & .ui-wrapper {
+    margin: 10px;
+    padding: 8px;
     overflow: hidden;
-
-    & #progress {
-      /*display: none;*/
-      position: fixed;
-      z-index: 1001;
-      top: 0;
-      left: 0;
-
-      & .ant-progress-inner {
-        vertical-align: top;
-      }
-    }
-
-    & #wrapper {
-      position: relative;
-      height: 100%;
-      margin-left: var(--aside_width);
-      box-sizing: border-box;
-
-      & #main {
-        position: absolute;
-        top: var(--header_height);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        overflow: auto;
-        box-sizing: border-box;
-        background-color: var(--main_bgc);
-      }
-    }
-  }
-
-  /* 登录页面 */
-  & #container.unauthed {
-
-    & #wrapper {
-      position: static;
-      width: 400px;
-      height: auto;
-      margin: 250px auto auto;
-      box-shadow: 0 0 18px rgba(0, 0, 0, .3);
-
-      & #main {
-        position: static;
-      }
-    }
+    background-color: var(--white);
   }
 }

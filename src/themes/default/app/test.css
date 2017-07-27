@@ -1,0 +1,18 @@
+.ui-test {
+  & #steps-wrapper {
+    padding: 30px;
+  }
+
+  & .content {
+    margin: 15px 0;
+    height: 300px;
+
+    line-height: 300px;
+    font-size: 50px;
+    text-align: center;
+  }
+
+  & .action {
+
+  }
+}
