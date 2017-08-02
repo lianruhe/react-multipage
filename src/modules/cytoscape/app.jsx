@@ -2,14 +2,22 @@ import React from 'react'
 import cytoscape from 'cytoscape'
 import cxtmenu from 'cytoscape-cxtmenu'
 import edgehandles from 'cytoscape-edgehandles'
+// import cydagre from 'cytoscape-dagre' 流程图的布局
+// import cycola from 'cytoscape-cola' // 流程图的布局
+// import navigator from 'cytoscape-navigator' // 不知道是什么
 
 cxtmenu(cytoscape)
 edgehandles(cytoscape)
+// cydagre(cytoscape)
+// cycola(cytoscape)
+// navigator(cytoscape)
 
 export default class Cytoscape extends React.Component {
   componentDidMount () {
     this.cy = cytoscape({
       container: this.refs.cytoscape,
+      boxSelectionEnabled: false,
+      autounselectify: true,
       layout: {
         name: 'cose',
         padding: 10
@@ -27,13 +35,13 @@ export default class Cytoscape extends React.Component {
           'color': '#fff'
         }
       },
-      // {
-      //   selector: ':selected',
-      //   css: {
-      //     'border-width': 3,
-      //     'border-color': '#333'
-      //   }
-      // },
+      {
+        selector: ':selected',
+        css: {
+          'border-width': 3,
+          'border-color': '#333'
+        }
+      },
       {
         selector: 'edge',
         css: {
@@ -103,8 +111,8 @@ export default class Cytoscape extends React.Component {
           // { data: { source: 'j', target: 'k', faveColor: '#6FB1FC', strength: 70 } },
           // { data: { source: 'j', target: 'g', faveColor: '#6FB1FC', strength: 80 } },
 
-          // { data: { source: 'e', target: 'j', faveColor: '#EDA1ED', strength: 95 } },
-          { data: { source: 'e', target: 'k', faveColor: '#EDA1ED', strength: 60 }, classes: 'questionable' },
+          { data: { source: 'e', target: 'j', faveColor: '#EDA1ED', strength: 95 } },
+          // { data: { source: 'e', target: 'k', faveColor: '#EDA1ED', strength: 60 }, classes: 'questionable' },
 
           { data: { source: 'k', target: 'j', faveColor: '#86B342', strength: 100 } },
           // { data: { source: 'k', target: 'e', faveColor: '#86B342', strength: 100 } },
