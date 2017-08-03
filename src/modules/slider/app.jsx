@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout, Menu, Icon } from 'antd'
-// import './index.css'
+import './index.css'
 const { Header, Sider, Content } = Layout
 
 export default class SiderDemo extends React.Component {

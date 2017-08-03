@@ -1,0 +1,86 @@
+#ui-filesystem {
+  min-width: 890px;
+
+  & .bread {
+    padding: 10px 32px;
+  }
+
+  & #header {
+    /*height: 50px;*/
+    background-color: var(--white);
+
+    & .style-icon {
+      font-size: 21px;
+      margin-left: 10px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    & .search, & .style-icon {
+      /*line-height: 40px;*/
+    }
+  }
+
+  & #content {
+    background-color: var(--white);
+
+    & .card {
+      position: relative;
+      width: 120px;
+      margin: 0 5px 5px 0;
+      text-align: center;
+      box-shadow: none;
+      border: 1px solid var(--white);
+      border-radius: 5px;
+      cursor: pointer;
+
+      & .folder-icon {
+        font-size: 42px;
+        color: #fecf48;
+      }
+
+      & .file-icon {
+        font-size: 32px;
+        line-height: 42px;
+        /*color: #fecf48;*/
+      }
+
+      & .check-icon {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        font-size: 16px;
+        color: #3b8cff;
+        opacity: 0;
+      }
+
+      &.card-checked {
+        background-color: #f1f5fa;
+        border: 1px solid #90c3fd;
+
+        & .check-icon {
+          opacity: 1;
+        }
+      }
+
+      &.card-uncheck {
+        &:hover {
+          background-color: #f1f5fa;
+          border-color: #f1f5fa;
+
+          & .check-icon {
+            opacity: .4;
+
+            &:hover {
+              opacity: .5;
+            }
+          }
+        }
+      }
+    }
+
+    & .file-list {
+      padding: 0 32px;
+    }
+  }
+}
