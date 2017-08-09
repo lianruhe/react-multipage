@@ -6,14 +6,16 @@ import { Table } from 'antd'
 export default class FileCard extends React.Component {
   static propTypes = {
     dataList: PropTypes.array.isRequired,
-    checked: PropTypes.object,
+    checkList: PropTypes.array,
     checkItem: PropTypes.func,
+    checkAllItems: PropTypes.func,
     getDataList: PropTypes.func
   }
 
   render () {
-    const { dataList, checkItem, checked, getDataList } = this.props
-    console.log(checkItem, checked, getDataList)
+    const { dataList, checkItem, checkAllItems, checkList, getDataList } = this.props
+    // const selectedRowKeys = Object.keys(checkList).filter(key => !!checkList.key)
+    console.log(checkItem, checkList, getDataList)
     const columns = [{
       title: '文件名',
       dataIndex: 'id'
@@ -27,11 +29,19 @@ export default class FileCard extends React.Component {
     return (
       <Table
         className="file-list"
-        size="middle"
+        // size="middle"
+        rowSelection={{
+          selectedRowKeys: checkList,
+          onSelect: checkItem,
+          onSelectAll: checkAllItems
+        }}
         pagination={false}
         rowKey={item => item.id}
         columns={columns}
-        dataSource={dataList} />
+        dataSource={dataList}
+        onRowClick={checkItem}
+        onRowDoubleClick={() => { console.log('doubleClick') }}
+        />
     )
   }
 }

@@ -15,11 +15,11 @@ import './style.css'
 
 const { Header, Content } = Layout
 
-export default class Demo extends Base {
+export default class FileSystem extends Base {
   state = {
     style: 'card',
     dataList: [],
-    checked: {}
+    checkList: []
   }
 
   @autobind
@@ -45,11 +45,33 @@ export default class Demo extends Base {
     if (!item.id) {
       return
     }
-    const { checked } = this.state
+    const { checkList } = this.state
 
-    checked[item.id] = checked[item.id] ? null : item
+    const index = checkList.indexOf(item.id)
+    if (index === -1) {
+      checkList.push(item.id)
+    } else {
+      checkList.splice(index, 1)
+    }
+
     this.setState({
-      ...checked
+      checkList
+    }, () => {
+      this.forceUpdate()
+    })
+  }
+
+  @autobind
+  checkAllItems (selected) {
+    // 全部勾选
+    let checkList = []
+    if (selected) {
+      checkList = this.state.dataList.map(item => item.id)
+    }
+    this.setState({
+      checkList
+    }, () => {
+      this.forceUpdate()
     })
   }
 
@@ -71,7 +93,7 @@ export default class Demo extends Base {
   }
 
   render () {
-    const { style, dataList, checked } = this.state
+    const { style, dataList, checkList } = this.state
     const Com = style === 'list' ? FileList : FileCard
     return (
       <Layout id="ui-filesystem">
@@ -86,7 +108,7 @@ export default class Demo extends Base {
             <Col span={18}>
               <Button type="primary">上传</Button>
             </Col>
-            <Col span={6}>
+            <Col span={6} className="right">
               <Input.Search
                 className="search"
                 placeholder="搜索您的文件"
@@ -103,7 +125,12 @@ export default class Demo extends Base {
         </Header>
 
         <Content id="content">
-          <Com dataList={dataList} checked={checked} checkItem={this.checkItem} getDataList={this.getDataList} />
+          <Com
+            dataList={dataList}
+            checkList={checkList}
+            checkItem={this.checkItem}
+            checkAllItems={this.checkAllItems}
+            getDataList={this.getDataList} />
         </Content>
       </Layout>
     )
