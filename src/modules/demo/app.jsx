@@ -2,6 +2,7 @@ import React from 'react'
 import autobind from 'autobind-decorator'
 
 import Base from 'components/base'
+// import Base from './base'
 import Grid from 'components/grid'
 
 import { Input } from 'antd'
