@@ -35,7 +35,7 @@ export function configure (options) {
   merge(defaultReq, options)
 }
 
-export function intercept ({ request, response } = {}, host = defaultInterceptors) {
+export function intercept ({ request, response } = {}, host = clonedInterceptors()) {
   if (request) {
     host.request = host.request.concat(request)
   }
