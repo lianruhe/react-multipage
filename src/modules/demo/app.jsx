@@ -3,7 +3,8 @@ import autobind from 'autobind-decorator'
 
 import Base from 'components/base'
 // import Base from './base'
-import Grid from 'components/grid'
+// import Grid from 'components/grid'
+import Grid from 'opiece-react-components/lib/grid'
 
 import { Input } from 'antd'
 

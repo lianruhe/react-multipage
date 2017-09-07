@@ -41,7 +41,7 @@ export default class FileCard extends React.Component {
         dataSource={dataList}
         onRowClick={checkItem}
         onRowDoubleClick={() => { console.log('doubleClick') }}
-        />
+      />
     )
   }
 }

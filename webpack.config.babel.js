@@ -151,7 +151,7 @@ const webpackConfig = {
       },
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules[/\\](?!(opiece))/,
         loader: 'babel-loader'
       },
       {
