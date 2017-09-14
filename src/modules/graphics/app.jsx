@@ -2,6 +2,7 @@ import createG2 from 'g2-react'
 import { Stat } from 'g2'
 import React from 'react'
 import data from './data.json'
+console.log(data)
 
 function findNode (name, nodes) {
   let rst = null
@@ -23,7 +24,7 @@ function findNode (name, nodes) {
 const Chart = createG2(chart => {
   chart.tooltip({
     map: {
-      title: 'name',
+      // title: 'name',
       value: 'value'
     }
   })
