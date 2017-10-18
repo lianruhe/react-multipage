@@ -24,30 +24,30 @@ export default class Graphics extends React.Component {
     //   })
     // }
     const formatUtil = echarts.format
-    function getLevelOption () {
-      return [{
-        itemStyle: {
-          normal: {
-            borderWidth: 0,
-            gapWidth: 5
-          }
-        }
-      }, {
-        itemStyle: {
-          normal: {
-            gapWidth: 1
-          }
-        }
-      }, {
-        colorSaturation: [0.35, 0.5],
-        itemStyle: {
-          normal: {
-            gapWidth: 1,
-            borderColorSaturation: 0.6
-          }
-        }
-      }]
-    }
+    // function getLevelOption () {
+    //   return [{
+    //     itemStyle: {
+    //       normal: {
+    //         borderWidth: 0,
+    //         gapWidth: 5
+    //       }
+    //     }
+    //   }, {
+    //     itemStyle: {
+    //       normal: {
+    //         gapWidth: 1
+    //       }
+    //     }
+    //   }, {
+    //     colorSaturation: [0.35, 0.5],
+    //     itemStyle: {
+    //       normal: {
+    //         gapWidth: 1,
+    //         borderColorSaturation: 0.6
+    //       }
+    //     }
+    //   }]
+    // }
     const option = {
       title: {
         text: '',

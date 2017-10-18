@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Form from 'components/form'
+import Form from 'opiece-react-components/lib/form'
 import { Input, Upload, Button, Icon } from 'antd'
 
 const { TextArea } = Input
