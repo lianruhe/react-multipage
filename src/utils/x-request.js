@@ -1,4 +1,4 @@
-import request from './request'
+import request from 'opiece-utils/lib/request'
 import { message } from 'antd'
 
 const showMessage = body => {
