@@ -3,13 +3,13 @@ import autobind from 'autobind-decorator'
 import echarts from 'echarts'
 import ReactEcharts from 'echarts-for-react'
 // import data from '../graphics/data.json'
-import data from './data-test.json'
-import listdata from './data-list.json'
-import list2tree from 'utils/list2tree'
+import data from './diskdata.json'
+// import listdata from './data-list.json'
+import list2tree from 'opiece-utils/lib/list2tree'
 // const diskData = './diskdata.json'
 console.log(data)
 const start = Date.now()
-const treeData = list2tree(listdata)
+const treeData = list2tree(data)
 console.log(treeData)
 console.log(Date.now() - start)
 
@@ -72,7 +72,7 @@ export default class Graphics extends React.Component {
       },
 
       series: [{
-        name: '数据资产',
+        name: '磁盘使用情况',
         type: 'treemap',
         visibleMin: 1,
         leafDepth: 2,
@@ -211,7 +211,7 @@ export default class Graphics extends React.Component {
   render () {
     return (
       <div className="examples">
-        <button onClick={() => this.handleClick()}>数据关系</button>
+        <button onClick={() => this.handleClick()}>磁盘使用</button>
         <div className="parent">
           {/* <label> render a disk usage treemap. </label> */}
           <ReactEcharts

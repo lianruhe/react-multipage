@@ -26,7 +26,7 @@ if (__DEV__) {
   )
 }
 // 忽略的模块
-const entryIgnore = ['README.md']
+const entryIgnore = ['README.md', '.DS_Store', 'graphics', 'slider', 'cytoscape']
 modules.map(module => {
   if (entryIgnore.indexOf(module) === -1) {
     modulesEntry[module] = appEntry.concat(paths.src('modules', module, 'index.jsx'))
@@ -48,7 +48,9 @@ const postcssLoaders = [
       plugins: function () {
         return [
           require('postcss-import'),
-          require('postcss-url'),
+          require('postcss-url')({
+            url: asset => `${config.compiler_public_path}${asset.url}`
+          }),
           // require('precss'),
           require('postcss-cssnext')({
             features: {
@@ -72,6 +74,19 @@ const lesscssLoaders = [
     options: {
       importLoaders: 1,
       sourceMap: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true,
+      plugins: function () {
+        return [
+          require('postcss-url')({
+            url: asset => `${config.compiler_public_path}${asset.url}`
+          })
+        ]
+      }
     }
   },
   {
@@ -132,8 +147,8 @@ const webpackConfig = {
     vendor: config.compiler_vendor
   },
   output: {
-    path: paths.dist(__PROD__ ? 'static' : ''),
-    publicPath: config.compiler_public_path,
+    path: paths.dist(),
+    publicPath: `${config.compiler_public_path}/`,
     filename: `[name].[${config.compiler_hash_type}].js`,
     chunkFilename: `[id].[${config.compiler_hash_type}].js`
   },

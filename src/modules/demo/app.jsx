@@ -1,7 +1,7 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 
-import Base from 'components/base'
+// import Base from 'components/base'
 // import Base from './base'
 // import Grid from 'components/grid'
 import Grid from 'opiece-react-components/lib/grid'
@@ -13,7 +13,7 @@ import request from 'utils/x-request'
 import { APP_RES } from 'utils/config'
 import { GET_DEMO_LIST } from 'utils/apis'
 
-export default class Demo extends Base {
+export default class Demo extends React.Component {
   // 构造函数，不需要类构造之前做的初始化数据时，可以不写
   // constructor (props) {
   //   super(props)
